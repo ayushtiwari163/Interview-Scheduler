@@ -6,6 +6,9 @@
   height: 40vmin;
   pointer-events: none;
 }
+.navbar {
+  background-color: rgb(12, 39, 61);
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
