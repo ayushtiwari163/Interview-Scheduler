@@ -1,6 +1,6 @@
 const Interview = require('../models/Interview')
 const User = require('../models/User')
-const check = async(req,res,next) => {
+const check_update = async(req,res,next) => {
     if(req.body.user.length<2){
         return res.status(401).send({error : "must have atleast two users"})
     }
@@ -23,10 +23,12 @@ const check = async(req,res,next) => {
         const user_check = await User.findOne({_id: user._id})
         for(item of user_check.interviews){
             const interview = await Interview.findOne({_id : item})
+            if(item == req.body.interviewId) 
+            continue
             if(!(interview.endTime<=startTime || interview.startTime>=endTime) )
             return res.status(401).send({error : "User" + user_check.name+ "already busy in this slot"})
         }
     }
   next();
 }
-module.exports = check;
+module.exports = check_update;
