@@ -62,51 +62,73 @@ const CreateInterview = () => {
   };
 
   return loading ? (
-    <div>Loading...Please wait.</div>
+    <div className="fs-3">Loading...Please wait.</div>
   ) : (
-    <div>
-      <h1 style={{ fontSize: "2 rem", color: "brown", position: "relative" }}>
-        {" "}
-        Create new Interview
-      </h1>
-      <h3 style={{ color: "brown" }}>Add users</h3>
-      {usersList.map((item, index) => (
-        <p key={index}>
-          <span style={{ fontFamily: "verdana" }}>{item.email}</span> &nbsp;
-          {!check(item.email) && (
-            <Button
-              variant="outlined"
-              color="primary"
-              onClick={() => {
-                addEmail(item.email);
-              }}
-            >
-              ADD
-            </Button>
-          )}
-          {check(item.email) && (
-            <Button
-              variant="outlined"
-              color="secondary"
-              onClick={() => {
-                removeEmail(item.email);
-              }}
-            >
-              REMOVE
-            </Button>
-          )}
-        </p>
-      ))}
-      <h3 style={{ color: "brown" }}>Select Time</h3>
-      <p style={{ fontSize: "1rem" }}>Start Time:-</p>
-      {<DateTimePicker onChange={setStartTime} value={startTime} />} <br />
-      <p style={{ fontSize: "1rem" }}>End Time:-</p>
-      {<DateTimePicker onChange={setEndTime} value={endTime} />} <br />
-      <br />
-      <Button variant="contained" color="primary" onClick={() => submit()}>
-        Create Interview
-      </Button>
-    </div>
+    <>
+      <div>
+        <h1 className="fs-1 mt-2 fw-bolder" style={{ color: "#609191" }}>
+          {" "}
+          Create new Interview
+        </h1>
+      </div>
+      <div className="container row " style={{ margin: "6rem" }}>
+        <div className="col">
+          <h3 className="fs-2" style={{ color: "#525252" }}>
+            Add Users
+          </h3>
+          {usersList.map((item, index) => (
+            <p key={index}>
+              <span style={{ fontFamily: "verdana" }}>{item.email}</span> &nbsp;
+              {!check(item.email) && (
+                <Button
+                  className="bg-primary text-white"
+                  variant="outlined"
+                  onClick={() => {
+                    addEmail(item.email);
+                  }}
+                >
+                  ADD
+                </Button>
+              )}
+              {check(item.email) && (
+                <Button
+                  className="bg-danger text-white"
+                  variant="outlined"
+                  color="secondary"
+                  onClick={() => {
+                    removeEmail(item.email);
+                  }}
+                >
+                  REMOVE
+                </Button>
+              )}
+            </p>
+          ))}
+        </div>
+        <div className="col">
+          <h3 className="fs-2" style={{ color: "#525252" }}>
+            Select Time
+          </h3>
+          <p className="fw-bolder" style={{ fontSize: "1rem" }}>
+            Start Time:-
+          </p>
+          {<DateTimePicker onChange={setStartTime} value={startTime} />} <br />
+          <p className="fw-bolder m-2" style={{ fontSize: "1rem" }}>
+            End Time:-
+          </p>
+          {<DateTimePicker onChange={setEndTime} value={endTime} />} <br />
+          <br />
+          <Button
+            className="bg-success text-white"
+            variant="contained"
+            color="primary"
+            onClick={() => submit()}
+          >
+            Create Interview
+          </Button>
+        </div>
+      </div>
+    </>
   );
 };
 

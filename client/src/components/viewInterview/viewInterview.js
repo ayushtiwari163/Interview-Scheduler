@@ -19,9 +19,9 @@ const ViewInterview = () => {
   }, []);
 
   return loading ? (
-    <div>Loading...Please wait</div>
+    <div className="fs-3">Loading...Please wait</div>
   ) : (
-    <div>
+    <div className="fs-5">
       {items.map((item, index) => (
         <Interview key={index} item={item} />
       ))}

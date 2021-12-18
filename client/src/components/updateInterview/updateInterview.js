@@ -82,32 +82,20 @@ const UpdateInterview = () => {
       alert(error.response.data.error);
     }
   };
-  //   const deleteCall = async () => {
-  //     try {
-  //       const response = await axios.delete(
-  //         deleteInterview + "?id=" + encodeURIComponent(Edit._id)
-  //       );
-  //       const dummy = !boolUpdate;
-  //       setUpdate(dummy);
-  //       alert("Interview was successfully deleted");
-  //     } catch (error) {
-  //       alert(error.response.data.error);
-  //     }
-  //   };
 
   return loading ? (
     <div>Loading...Please wait.</div>
   ) : (
     <div>
-      <h1 style={{ color: "brown", fontStyle: "bold" }}>
-        Updates Interviews here
+      <h1 className="fs-1 mt-2 fw-bolder" style={{ color: "#609191" }}>
+        Edit Scheduled Interviews
       </h1>
       {interviewList.map((item, index) => (
         <div key={index}>
           {checkEditState(item) && (
             <Button
+              className="bg-info text-dark"
               variant="contained"
-              color="brown"
               onClick={() => unClickCheck(item)}
             >
               EDIT
@@ -116,47 +104,67 @@ const UpdateInterview = () => {
           {!checkEditState(item) && (
             <div>
               <Button
+                className="bg-secondary text-white"
                 variant="contained"
                 color="brown"
                 onClick={() => clickCheck(item)}
               >
                 UNDO
               </Button>
-              <h3 style={{ color: "brown" }}>USERS</h3>
-              {usersList.map((item, index) => (
-                <p key={index}>
-                  <span style={{ fontFamily: "verdana" }}>{item.email}</span>{" "}
-                  &nbsp;
-                  {!checkUser(item.email) && (
-                    <Button
-                      variant="outlined"
-                      color="primary"
-                      onClick={() => addEmail(item.email)}
-                    >
-                      ADD
-                    </Button>
-                  )}
-                  {checkUser(item.email) && (
-                    <Button
-                      variant="outlined"
-                      color="secondary"
-                      onClick={() => removeEmail(item.email)}
-                    >
-                      REMOVE
-                    </Button>
-                  )}
-                </p>
-              ))}
-              <h3 style={{ color: "brown" }}>Select Time</h3>
-              <p style={{ fontSize: "1rem" }}>Start Time:-</p>
-              {
-                <DateTimePicker onChange={setStartTime} value={startTime} />
-              }{" "}
-              <br />
-              <p style={{ fontSize: "1rem" }}>End Time:-</p>
-              {<DateTimePicker onChange={setEndTime} value={endTime} />} <br />
+              <div className="container row " style={{ margin: "6rem" }}>
+                <div className="col">
+                  <h3 className="fs-2" style={{ color: "#525252" }}>
+                    Users
+                  </h3>
+                  {usersList.map((item, index) => (
+                    <p key={index}>
+                      <span style={{ fontFamily: "verdana" }}>
+                        {item.email}
+                      </span>{" "}
+                      &nbsp;
+                      {!checkUser(item.email) && (
+                        <Button
+                          className="bg-primary text-white"
+                          variant="outlined"
+                          color="primary"
+                          onClick={() => addEmail(item.email)}
+                        >
+                          ADD
+                        </Button>
+                      )}
+                      {checkUser(item.email) && (
+                        <Button
+                          className="bg-danger text-white"
+                          variant="outlined"
+                          color="secondary"
+                          onClick={() => removeEmail(item.email)}
+                        >
+                          REMOVE
+                        </Button>
+                      )}
+                    </p>
+                  ))}
+                </div>
+
+                <div className="col">
+                  <h3 className="fs-2" style={{ color: "#525252" }}>
+                    Select Time
+                  </h3>
+                  <p style={{ fontSize: "1rem" }}>Start Time:-</p>
+                  {
+                    <DateTimePicker onChange={setStartTime} value={startTime} />
+                  }{" "}
+                  <br />
+                  <p style={{ fontSize: "1rem" }}>End Time:-</p>
+                  {
+                    <DateTimePicker onChange={setEndTime} value={endTime} />
+                  }{" "}
+                  <br />
+                </div>
+              </div>
               <br />
               <Button
+                className="bg-success text-white"
                 variant="contained"
                 color="primary"
                 onClick={() => updateCall()}

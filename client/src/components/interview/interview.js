@@ -14,9 +14,15 @@ const Interview = ({ item }) => {
 
   return (
     <div>
-      <span style={{ fontFamily: "bold" }}>Users :- </span>
+      <span className="fs-4 fw-bold" style={{ fontFamily: "bold" }}>
+        Users :-{" "}
+      </span>
       {item.email.map((email, index) => (
-        <span style={{ fontFamily: "initial" }} key={index}>
+        <span
+          className="text-primary"
+          style={{ fontFamily: "initial" }}
+          key={index}
+        >
           {email} &nbsp;&nbsp;{" "}
         </span>
       ))}
